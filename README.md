@@ -16,7 +16,7 @@ Building a bridge that is as decentralised and trustless as possible can be done
 
 ### 1.2 Examples
 #### Ethereum Bridge (Smart Contracts `\<\>` Polkadot)
-As explained by Dr. Gavin Wood in a high-level [blog post](https://medium.com/polkadot-network/polkadot-substrate-and-ethereum-f0bf1ccbfd13)] from October 2019, there are three ways that e.g. the Polkadot and Substrate ecosystem can be bridged to the Ethereum ecosystem:
+As explained by Dr. Gavin Wood in a high-level [blog post](https://medium.com/polkadot-network/polkadot-substrate-and-ethereum-f0bf1ccbfd13) from October 2019, there are three ways that e.g. the Polkadot and Substrate ecosystem can be bridged to the Ethereum ecosystem:
 1. Polkadot <-> Ethereum public bridge;
 2. Substrate <-> Parity-Ethereum-PoA bridge;
 3. The Substrate EVM module;
@@ -30,8 +30,10 @@ The Bitcoin bridge as documented in the specification is composed of two logical
 
 There is now a [reference implementation and testnet available](https://bridge.interlay.io/?tab=issue).
 
-## 2. Bridging Helium to Ethereum
-TBD
+## 2. Bridging Helium to Ethereum - Proposed Path
+Helium in its current state, as well as Ethereum, is not a Substrate-native chain, so we cannot use *bridge palettes*. Furthermore, the Helium blockchain does not support any smart contract functionality nor is it based on the Ethereum Virtual Machine (EVM). Unfortunately, a Turing-complete smart contract functionality is also not part of the [Helium Improvement Proposals](https://github.com/helium/HIP). Whilst the implementation of such a feature is challenging, we strongly recommend submitting a proposal for this functionality as it will be an important feature for the management of IoT devices (e.g. part ownership, partial payments). Due to these facts, we cannot use approaches like [TokenBridge](https://docs.tokenbridge.net) that allow users to transfer data (e.g. digital asset ownership information) between two chains in the Ethereum ecosystem. Generally, EVM-based cross-chain bridges provide fast and secure connections between blockchains and create scalability and connectivity - interoperability - between Ethereum networks.
+
+Therefore, we are left with deploying a higher-order protocol to implement a decentralised bridge system. Since Interlay has successfully showcased the [XCLAIM](https://www.xclaim.io) protocol for the Bitcoin `\<\>` Polkadot bridge, we recommend building the Helium `\<\>` Ethereum on the same foundation.
 
 ## 3. License
 The [`tokenbridge-helium-ethereum`](https://github.com/pcaversaccio/tokenbridge-helium-ethereum) implementation is licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html), also included in our repository in the [`LICENSE`](https://github.com/pcaversaccio/tokenbridge-helium-ethereum/blob/main/LICENSE) file.
