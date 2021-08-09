@@ -25,7 +25,7 @@ As explained by Dr. Gavin Wood in a high-level [blog post](https://medium.com/po
 The [Interlay](https://interlay.io) team has written a [specification](https://interlay.gitlab.io/interbtc-spec) on a Bitcoin bridge that is based on the [XCLAIM](https://eprint.iacr.org/2018/643.pdf) design paper. The protocol enables a two-way bridge between Polkadot and Bitcoin. It allows holders of BTC to *teleport* their assets to Polkadot as *PolkaBTC*, and holders of *PolkaBTC* to burn their assets for BTC on the Bitcoin chain.
 
 The Bitcoin bridge as documented in the specification is composed of two logically different components:
-- The [XCLAIM component](https://github.com/interlay/interbtc-spec/tree/master/interbtc-spec) that maintains all accounts that own PolkaBTC;
+- The [XCLAIM component](https://github.com/interlay/interbtc-spec/tree/master/interbtc-spec) that maintains all accounts that own PolkaBTC.
 - The [BTC-Relay](https://github.com/interlay/interbtc-spec/tree/master/btcrelay-spec) that is responsible for verifying Bitcoin state when a new transaction is submitted.
 
 There is now a [reference implementation and testnet available](https://bridge.interlay.io).
@@ -42,22 +42,22 @@ Therefore, we are left with deploying a higher-order protocol to implement a dec
 
 XCLAIM guarantees that *i(b)*-backed tokens can be redeemed for the corresponding amount of *b*, or the equivalent economic value in *i*. Thereby, XCLAIM overcomes the limitations of centralised approaches through four primary techniques:
 - **Secure audit logs:** Logs are constructed to record actions of all users both on *B* and *I*.
-- **Transaction inclusion proofs:** Chain relays are used to prove correct behavior on *B* to the smart contract on *I*.
-- **Proof-or-punishment:** Instead of relying on timely fraud proofs (reactive), XCLAIM requires correct behavior to be proven proactively.
+- **Transaction inclusion proofs:** Chain relays are used to prove the correct behavior on *B* to the smart contract on *I*.
+- **Proof-or-punishment:** Instead of relying on timely fraud proofs (reactive), XCLAIM requires correct behavior to be proven *proactively*.
 - **Overcollateralisation:** Non-trusted intermediaries are bound by collateral, with mechanisms in place to mitigate exchange rate fluctuations.
 
 ### 2.2 High-Level Overview
-The XCLAIM solution is compliant with the ERC20 standard. An overview of the protocol is presented below:
+The XCLAIM solution is compliant with the [ERC20 token standard](https://eips.ethereum.org/EIPS/eip-20). An overview of the protocol is presented below ([source](https://eprint.iacr.org/2018/643.pdf)):
 <div align="center">
-  <img src="assets/img/xclaim_process_flow.png" alt="XCLAIM Process Flow" width="100%" />
+  <img src="assets/img/xclaim_process_flow.png" alt="XCLAIM Process Flow" width="100%"/>
 </div>
 
 All parties interact with the smart contract, creating a publicly verifiable audit log. Correct behavior is enforced by (i) overcollateralising the *vault* and (ii) cross-chain transaction inclusion proofs. When issuing, the *requester* proves correctness of the lock making *Issue non-interactive*. Safety is ensured by forcing the *vault* to *proactively* prove correctness of the *Redeem* process. As a result, XCLAIM enforces *Transfer* and *Swap* occur consistently on the backing *B* and issuing *I* blockchains.
 
 ### 2.3 Issuing Smart Contract
-A public smart contract is responsible for managing the correct issuing and exchange of *i(b)* on *I*. The issuing smart contract ensures correct behaviour of the *vault*. In the following a high-level overview of the architecture of the XCLAIM smart contract and the interactions between its components is presented. The references to the original [XCLAIM paper sections](https://eprint.iacr.org/2018/643.pdf) introducing each component are also provided. The treasury refers to the basic ledger functionality of *I*.
+A public smart contract is responsible for managing the correct issuance and exchange of *i(b)* on *I*. The issuing smart contract ensures correct behaviour of the *vault*. In the following a high-level overview of the architecture of the XCLAIM smart contract and the interactions between its components is presented. The references to the original [XCLAIM design paper sections](https://eprint.iacr.org/2018/643.pdf) introducing each component are also provided. The treasury refers to the basic ledger functionality of *I*.
 <div align="center">
-  <img src="assets/img/xclaim_smart_contract.png" alt="XCLAIM Process Flow" width="70%" />
+  <img src="assets/img/xclaim_smart_contract.png" alt="XCLAIM Process Flow" width="50%"/>
 </div>
 
 ## 3. License
