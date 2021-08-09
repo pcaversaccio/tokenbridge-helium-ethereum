@@ -60,6 +60,8 @@ A public smart contract is responsible for managing the correct issuance and exc
   <img src="assets/img/xclaim_smart_contract.png" alt="XCLAIM Process Flow" width="50%"/>
 </div>
 
+As mentioned already above, the overarching goal is to wrap the HNT into an [ERC20 token standard](https://eips.ethereum.org/EIPS/eip-20) interface that can be enriched by further extensions such as the [`permit`](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#ERC20Permit-permit-address-address-uint256-uint256-uint8-bytes32-bytes32-) method. This particular method can be used to change an account's ERC20 allowance (see [`IERC20.allowance`](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#IERC20-allowance-address-address-)) by presenting a message signed by the account. By not relying on [`IERC20.approve`](https://docs.openzeppelin.com/contracts/4.x/api/token/erc20#IERC20-approve-address-uint256-), the token holder account doesn't need to send a transaction, and thus is not required to hold Ether at all, enabling so-called [meta-transactions](https://github.com/pcaversaccio/metatx).
+
 ## 3. License
 The [`tokenbridge-helium-ethereum`](https://github.com/pcaversaccio/tokenbridge-helium-ethereum) implementation is licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html), also included in our repository in the [`LICENSE`](https://github.com/pcaversaccio/tokenbridge-helium-ethereum/blob/main/LICENSE) file.
 
